@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LoansController } from './loans.controller';
-import { LoansService } from './loans.service';
+import { LoanService } from './loans.service';
 
 describe('LoansController', () => {
   let controller: LoansController;
 
-  const mockLoansService = {
+  const mockLoanService = {
     createLoan: jest.fn(),
     getLoan: jest.fn(),
     // Add other service methods your controller uses
@@ -16,8 +16,8 @@ describe('LoansController', () => {
       controllers: [LoansController],
       providers: [
         {
-          provide: LoansService,
-          useValue: mockLoansService,
+          provide: LoanService,
+          useValue: mockLoanService,
         },
       ],
     }).compile();
