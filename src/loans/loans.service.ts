@@ -58,4 +58,20 @@ export class LoanService {
     });
     return result;
   }
+
+  async getLoansDueSoon() {
+    const now = new Date();
+
+    const next24Hours = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+
+    const loans = await this.prisma.loan.findMany({
+      where: {
+        dueAt: {
+          gte: now,
+          lte: next24Hours,
+        },
+        returnedAt: null,
+      },
+    });
+  }
 }
