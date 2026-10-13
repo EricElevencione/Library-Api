@@ -68,3 +68,6 @@ coverage/
 .agents/
 .claude/
 .windsurf/
+
+*.md
+!README.md

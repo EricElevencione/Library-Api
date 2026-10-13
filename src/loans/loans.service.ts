@@ -64,13 +64,32 @@ export class LoanService {
 
     const next24Hours = new Date(now.getTime() + 24 * 60 * 60 * 1000);
 
-    const loans = await this.prisma.loan.findMany({
+    return this.prisma.loan.findMany({
       where: {
         dueAt: {
           gte: now,
           lte: next24Hours,
         },
         returnedAt: null,
+      },
+      select: {
+        id: true,
+        dueAt: true,
+        member: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+        copy: {
+          select: {
+            book: {
+              select: {
+                title: true,
+              },
+            },
+          },
+        },
       },
     });
   }
