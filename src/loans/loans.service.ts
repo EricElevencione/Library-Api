@@ -59,6 +59,7 @@ export class LoanService {
     return result;
   }
 
+  // to check whether the loans is due soon or not so that it flags
   async getLoansDueSoon() {
     const now = new Date();
 
